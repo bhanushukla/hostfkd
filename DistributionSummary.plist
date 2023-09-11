@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FKDiagnostics.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>1</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>37864A96FB1441928EA367AFDA020E7998B91072</string>
+				<key>dateExpires</key>
+				<string>25/07/26</string>
+				<key>type</key>
+				<string>Cloud Managed iOS Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>QJD7W9832N.org.reactjs.native.example.FlipkartDiagnostics</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>QJD7W9832N</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>FKDiagnostics.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>cbcf83a8-748d-4d6a-ba01-ea625d419fda</string>
+				<key>dateExpires</key>
+				<string>10/09/24</string>
+				<key>name</key>
+				<string>iOS Team Inhouse Provisioning Profile: org.reactjs.native.example.FlipkartDiagnostics</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>QJD7W9832N</string>
+				<key>name</key>
+				<string>Flipkart Internet Private limited</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>1.0</string>
+		</dict>
+	</array>
+</dict>
+</plist>
