@@ -103,7 +103,18 @@
 
 		<script>
 			const userAgentText = document.getElementById("userAgent-text");
-			userAgentText.innerText = navigator;
+			userAgentText.innerText = navigator.userAgentData
+      .getHighEntropyValues([
+        "architecture",
+        "model",
+        "platform",
+        "platformVersion",
+        "fullVersionList"
+      ])
+      .then((ua) => {
+        const model = ua["model"];
+        if (model) console.log("Phone: " + model);
+      });;
 		</script>
 	</body>
 </html>
