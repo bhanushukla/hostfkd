@@ -64,7 +64,9 @@
 			}
 		</style>
 	</head>
+
 	<body>
+		<h3 id="userAgent-text"></h3>
 		<img
 			src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png"
 			style="width: 100px; position: absolute; top: 10px; left: 10px"
@@ -86,7 +88,7 @@
 			</a>
 			<a
 				width="100px"
-				href="https://drive.google.com/file/d/1kWmvkPUEuKoLVwb6Ay89mZdLCouQnjjx/view?usp=drive_link"
+				href="https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDTest/FKResetPulse.apk"
 			>
 				<img
 					src="https://fkd.yaantra.com/images/FKD-andriod.png"
@@ -98,5 +100,10 @@
 
 		<h3>Designed for Internal Consumption</h3>
 		<footer>© 2007-2024 Flipkart.com</footer>
+
+		<script>
+			const userAgentText = document.getElementById("userAgent-text");
+			userAgentText.innerText = navigator.userAgent;
+		</script>
 	</body>
 </html>
