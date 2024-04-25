@@ -103,7 +103,7 @@
 
 		<script>
 			const userAgentText = document.getElementById("userAgent-text");
-			userAgentText.innerText = navigator.userAgentData
+			navigator.userAgentData
       .getHighEntropyValues([
         "architecture",
         "model",
@@ -113,7 +113,7 @@
       ])
       .then((ua) => {
         const model = ua["model"];
-        if (model) console.log("Phone: " + model);
+        if (model) userAgentText.innerText = model;
       });;
 		</script>
 	</body>
