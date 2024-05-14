@@ -88,7 +88,8 @@
 			</a>
 			<a
 				width="100px"
-				href="https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDTest/FKResetPulse.apk"
+				href="https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDTest/FKResetPulse_armeabi-v7a.apk"
+				id="android-apk-link"
 			>
 				<img
 					src="https://fkd.yaantra.com/images/FKD-andriod.png"
@@ -103,18 +104,27 @@
 
 		<script>
 			const userAgentText = document.getElementById("userAgent-text");
+			const androidApkLink = document.getElementById("android-apk-link");
+
 			navigator.userAgentData
-      .getHighEntropyValues([
-        "architecture",
-        "model",
-        "platform",
-        "platformVersion",
-        "fullVersionList"
-      ])
-      .then((ua) => {
-        const model = ua["model"];
-        if (model) userAgentText.innerText = model;
-      });;
+				.getHighEntropyValues([
+					"architecture",
+					"model",
+					"platform",
+					"platformVersion",
+					"fullVersionList",
+				])
+				.then((ua) => {
+					const model = ua["model"].toLowerCase();
+					if (model) userAgentText.innerText = model;
+					if (
+						model.includes("pixel 7") ||
+						model.includes("pixel 8")
+					) {
+						androidApkLink.href =
+							"https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDTest/FKResetPulse_arm64-v8a.apk";
+					}
+				});
 		</script>
 	</body>
 </html>
