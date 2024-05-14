@@ -117,12 +117,12 @@
 						return;
 					}
 					const model = ua["model"].toLowerCase();
-					if (model) userAgentText.innerText = model;
 					if (
 						model.includes("pixel 6") ||
 						model.includes("pixel 7") ||
 						model.includes("pixel 8")
 					) {
+						userAgentText.innerText = model;
 						androidApkLink.href =
 							"https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDNew/FKResetPulse-v8a.apk";
 					}
