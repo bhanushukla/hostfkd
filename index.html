@@ -64,7 +64,6 @@
 			}
 		</style>
 	</head>
-
 	<body>
 		<h3 id="userAgent-text"></h3>
 		<img
@@ -78,7 +77,7 @@
 		<section>
 			<a
 				width="100px"
-				href="itms-services://?action=download-manifest&amp;url=https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDTest/FKD.plist"
+				href="itms-services://?action=download-manifest&amp;url=https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDNew/FKD.plist"
 			>
 				<img
 					src="https://fkd.yaantra.com/images/FKD-apple.png"
@@ -88,7 +87,7 @@
 			</a>
 			<a
 				width="100px"
-				href="https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDTest/FKResetPulse_armeabi-v7a.apk"
+				href="https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDNew/FKResetPulse.apk"
 				id="android-apk-link"
 			>
 				<img
@@ -101,7 +100,6 @@
 
 		<h3>Designed for Internal Consumption</h3>
 		<footer>© 2007-2024 Flipkart.com</footer>
-
 		<script>
 			const userAgentText = document.getElementById("userAgent-text");
 			const androidApkLink = document.getElementById("android-apk-link");
@@ -115,14 +113,18 @@
 					"fullVersionList",
 				])
 				.then((ua) => {
+					if (!(ua && ua["model"])) {
+						return;
+					}
 					const model = ua["model"].toLowerCase();
 					if (model) userAgentText.innerText = model;
 					if (
+						model.includes("pixel 6") ||
 						model.includes("pixel 7") ||
 						model.includes("pixel 8")
 					) {
 						androidApkLink.href =
-							"https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDTest/FKResetPulse_arm64-v8a.apk";
+							"https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDNew/FKResetPulse-v8a.apk";
 					}
 				});
 		</script>
