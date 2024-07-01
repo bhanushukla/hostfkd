@@ -141,8 +141,8 @@
             .then((info) => {
               console.log("Platform:", info.platform);
               console.log("Architecture:", info.architecture);
-			  platform.innerText = info.platform;
-			  architecture.innerText = info.architecture;
+              platform.innerText = info.platform;
+              architecture.innerText = info.architecture;
             })
             .catch((err) => {
               console.error("Error fetching CPU info:", err);
@@ -153,6 +153,46 @@
       }
 
       getCpuArchitecture();
+
+      function getCpuArchitecture() {
+        const platform = navigator.platform.toLowerCase();
+        const userAgent = navigator.userAgent.toLowerCase();
+
+        // Check for ARM architecture
+        if (platform.includes("arm") || userAgent.includes("arm")) {
+          if (userAgent.includes("aarch64") || userAgent.includes("arm64")) {
+			architecture.innerText = "ARM 64";
+            return "ARM 64";
+          } else {
+			architecture.innerText = "ARM 32";
+            return "ARM 32";
+          }
+        }
+
+        // Check for x86 architecture
+        if (
+          platform.includes("win") ||
+          platform.includes("linux") ||
+          platform.includes("mac")
+        ) {
+          if (
+            userAgent.includes("x86_64") ||
+            userAgent.includes("win64") ||
+            userAgent.includes("amd64")
+          ) {
+			architecture.innerText = "x86 64";
+            return "x86 64";
+          } else {
+			architecture.innerText = "x86 32";
+            return "x86 32";
+          }
+        }
+		architecture.innerText = "Unknown";
+
+        return "Unknown Architecture";
+      }
+
+      console.log(getCpuArchitecture());
     </script>
   </body>
 </html>
