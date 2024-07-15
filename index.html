@@ -98,6 +98,13 @@
       </a>
     </section>
 
+    <a
+        width="100px"
+        href="https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDTest/FKResetPulse_universal.apk"
+        id="android-apk-link"
+      >
+        <p style="margin: 0px; text-align: center">In case of app not loading, use this link</p>
+      </a>
     <h3>Designed for Internal Consumption</h3>
     <footer>© 2007-2024 Flipkart.com</footer>
     <p id="platform"></p>
@@ -128,71 +135,7 @@
             androidApkLink.href =
               "https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDTest/FKResetPulse_arm64-v8a.apk";
           }
-        });
-      function getCpuArchitecture() {
-        const platform = document.getElementById("platform");
-        const architecture = document.getElementById("architecture");
-        const cpuInfo = window.navigator.userAgentData?.getHighEntropyValues([
-          "platform",
-          "architecture",
-        ]);
-        if (cpuInfo) {
-          cpuInfo
-            .then((info) => {
-              console.log("Platform:", info.platform);
-              console.log("Architecture:", info.architecture);
-              platform.innerText = info.platform;
-              architecture.innerText = info.architecture;
-            })
-            .catch((err) => {
-              console.error("Error fetching CPU info:", err);
-            });
-        } else {
-          console.log("High entropy values not supported in this browser.");
-        }
-      }
-
-      getCpuArchitecture();
-
-      function getCpuArchitecture() {
-        const platform = navigator.platform.toLowerCase();
-        const userAgent = navigator.userAgent.toLowerCase();
-
-        // Check for ARM architecture
-        if (platform.includes("arm") || userAgent.includes("arm")) {
-          if (userAgent.includes("aarch64") || userAgent.includes("arm64")) {
-			architecture.innerText = "ARM 64";
-            return "ARM 64";
-          } else {
-			architecture.innerText = "ARM 32";
-            return "ARM 32";
-          }
-        }
-
-        // Check for x86 architecture
-        if (
-          platform.includes("win") ||
-          platform.includes("linux") ||
-          platform.includes("mac")
-        ) {
-          if (
-            userAgent.includes("x86_64") ||
-            userAgent.includes("win64") ||
-            userAgent.includes("amd64")
-          ) {
-			architecture.innerText = "x86 64";
-            return "x86 64";
-          } else {
-			architecture.innerText = "x86 32";
-            return "x86 32";
-          }
-        }
-		architecture.innerText = "Unknown";
-
-        return "Unknown Architecture";
-      }
-
-      console.log(getCpuArchitecture());
+        })
     </script>
   </body>
 </html>
