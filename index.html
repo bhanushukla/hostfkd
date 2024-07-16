@@ -146,6 +146,19 @@
           "fullVersionList",
         ])
         .then((ua) => {
+          const platform = getMobileOperatingSystem();
+          var userAgent =
+            navigator.userAgent || navigator.vendor || window.opera;
+          document.getElementById("platform").innerText = userAgent;
+          document.getElementById("architecture").innerText = ua.platform;
+          if (platform === "iOS") {
+            document.getElementById("android-apk-link").style.display = "none";
+            document.getElementById("universal-apk-link").style.display =
+              "none";
+          } else if (platform === "Android") {
+            document.getElementById("ios-link").style.display = "none";
+          }
+
           if (!(ua && ua["model"])) {
             return;
           }
@@ -179,15 +192,6 @@
         }
 
         return "unknown";
-      }
-
-      const platform = getMobileOperatingSystem();
-
-      if (platform === "iOS") {
-        document.getElementById("android-apk-link").style.display = "none";
-        document.getElementById("universal-apk-link").style.display = "none";
-      } else if (platform === "Android") {
-        document.getElementById("ios-link").style.display = "none";
       }
     </script>
   </body>
