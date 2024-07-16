@@ -134,46 +134,6 @@
       </div>
     </div>
     <script>
-      const userAgentText = document.getElementById("userAgent-text");
-      const androidApkLink = document.getElementById("android-apk-link");
-
-      navigator.userAgentData
-        .getHighEntropyValues([
-          "architecture",
-          "model",
-          "platform",
-          "platformVersion",
-          "fullVersionList",
-        ])
-        .then((ua) => {
-          const platform = getMobileOperatingSystem();
-          var userAgent =
-            navigator.userAgent || navigator.vendor || window.opera;
-          document.getElementById("platform").innerText = userAgent;
-          document.getElementById("architecture").innerText = ua.platform;
-          if (platform === "iOS") {
-            document.getElementById("android-apk-link").style.display = "none";
-            document.getElementById("universal-apk-link").style.display =
-              "none";
-          } else if (platform === "Android") {
-            document.getElementById("ios-link").style.display = "none";
-          }
-
-          if (!(ua && ua["model"])) {
-            return;
-          }
-          const model = ua["model"].toLowerCase();
-          if (
-            model.includes("pixel 6") ||
-            model.includes("pixel 7") ||
-            model.includes("pixel 8")
-          ) {
-            userAgentText.innerText = model;
-            androidApkLink.href =
-              "https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDNew/FKResetPulse-v8a.apk";
-          }
-        });
-
       function getMobileOperatingSystem() {
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
         document.getElementById("platform").innerText = userAgent;
@@ -193,6 +153,41 @@
 
         return "unknown";
       }
+
+      const platform = getMobileOperatingSystem();
+
+      if (platform === "iOS") {
+        document.getElementById("android-apk-link").style.display = "none";
+        document.getElementById("universal-apk-link").style.display = "none";
+      } else if (platform === "Android") {
+        document.getElementById("ios-link").style.display = "none";
+      }
+      const userAgentText = document.getElementById("userAgent-text");
+      const androidApkLink = document.getElementById("android-apk-link");
+
+      navigator.userAgentData
+        .getHighEntropyValues([
+          "architecture",
+          "model",
+          "platform",
+          "platformVersion",
+          "fullVersionList",
+        ])
+        .then((ua) => {
+          if (!(ua && ua["model"])) {
+            return;
+          }
+          const model = ua["model"].toLowerCase();
+          if (
+            model.includes("pixel 6") ||
+            model.includes("pixel 7") ||
+            model.includes("pixel 8")
+          ) {
+            userAgentText.innerText = model;
+            androidApkLink.href =
+              "https://storage.googleapis.com/fk-p-prod-recomm-yaantra-asset/FKDNew/FKResetPulse-v8a.apk";
+          }
+        });
     </script>
   </body>
 </html>
