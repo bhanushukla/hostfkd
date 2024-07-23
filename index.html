@@ -26,7 +26,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: space-around;
+        padding-top: 100px;
         height: 100vh;
         color: #fff;
       }
@@ -67,17 +68,25 @@
         text-decoration: none;
         border-radius: 5px;
         font-size: 1.5em;
-        margin-top: 0.8em;
         transition: background 0.3s ease;
-      }
-      a:hover {
-        background: #2874f0;
       }
 
       footer {
         margin-top: 20px;
         text-align: center;
         color: #fff;
+      }
+      #sellback {
+        background: linear-gradient(to right, #1a4893, #3498db);
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      #universal-apk-link {
+        background: linear-gradient(to right, #1a4893, #3498db);
       }
     </style>
   </head>
@@ -124,10 +133,30 @@
           id="universal-apk-link"
         >
           <p style="margin: 0px; font-size: 16px; text-align: center">
-            In case the Android app is not loading, use <u>this</u> link
+            If the Android app is not loading, use <u>this</u> link
           </p>
         </a>
-        <h3>Designed for Internal Consumption</h3>
+        <div id="sellback">
+          <a
+            width="100px"
+            href="https://fkd.yaantra.com/app/android/Yaantra-Diagnostic-v2.3.apk?v=2.3"
+            id="sellback-android-link"
+          >
+            <p style="margin: 0px; font-size: 16px; text-align: center">
+              <b>Sellback</b> Android App link <u>here</u>
+            </p>
+          </a>
+          <a
+            width="100px"
+            href="itms-services://?action=download-manifest&amp;url=https://fkd.yaantra.com/app/ios/manifest.plist"
+            id="sellback-ios-link"
+          >
+            <p style="margin: 0px; font-size: 16px; text-align: center">
+              <b>Sellback</b> iOS App link <u>here</u>
+            </p>
+          </a>
+        </div>
+        <h3 style="margin-top: 32px">Designed for Internal Consumption</h3>
         <footer>© 2007-2024 Flipkart.com</footer>
         <p id="platform"></p>
         <p id="architecture"></p>
@@ -136,7 +165,6 @@
     <script>
       function getMobileOperatingSystem() {
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-        document.getElementById("platform").innerText = userAgent;
         // Windows Phone must come first because its UA also contains "Android"
         if (/windows phone/i.test(userAgent)) {
           return "Windows Phone";
@@ -159,8 +187,10 @@
       if (platform === "iOS") {
         document.getElementById("android-apk-link").style.display = "none";
         document.getElementById("universal-apk-link").style.display = "none";
+        document.getElementById("sellback-android-link").style.display = "none";
       } else if (platform === "Android") {
         document.getElementById("ios-link").style.display = "none";
+        document.getElementById("sellback-ios-link").style.display = "none";
       }
       const userAgentText = document.getElementById("userAgent-text");
       const androidApkLink = document.getElementById("android-apk-link");
