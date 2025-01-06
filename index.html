@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture and Read QR Code</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script> <!-- Include jsQR library -->
+</head>
+<body>
+    <h1>Capture and Read QR Code</h1>
+
+    <!-- Input field to open camera directly for capturing an image -->
+    <input type="file" accept="image/*" capture="camera" id="cameraInput">
+
+    <!-- Display the captured image -->
+    <img id="imagePreview" width="300" style="display:none;" alt="Captured Image">
+
+    <!-- Display the QR code content -->
+    <p id="qrCodeResult"></p>
+
+    <script>
+        const cameraInput = document.getElementById('cameraInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const qrCodeResult = document.getElementById('qrCodeResult');
+
+        cameraInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    // Show the image preview
+                    imagePreview.src = reader.result;
+                    imagePreview.style.display = 'block';
+                    
+                    // Decode the QR code
+                    decodeQRCode(reader.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Function to decode QR code using jsQR
+        function decodeQRCode(imageData) {
+            const img = new Image();
+            img.onload = function() {
+                // Create a canvas to extract image data
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                context.drawImage(img, 0, 0);
+
+                // Get the image data from the canvas
+                const imageDataObj = context.getImageData(0, 0, img.width, img.height);
+                
+                // Decode the QR code
+                const decoded = jsQR(imageDataObj.data, img.width, img.height);
+                if (decoded) {
+                    // Display the QR code result
+                    qrCodeResult.textContent = 'QR Code Content: ' + decoded.data;
+                } else {
+                    qrCodeResult.textContent = 'No QR code found.';
+                }
+            };
+            img.src = imageData;
+        }
+    </script>
+</body>
+</html>
